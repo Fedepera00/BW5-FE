@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
 import { Cliente } from "../interfaces/cliente";
 
 @Injectable({
@@ -27,5 +27,9 @@ export class HomeService {
       tap((response) => console.log("Risposta ricevuta dal backend:", response)), // Per il debug
       map((response) => response.content) // Estrae l'array di clienti
     );
+  }
+  getById(id: number): Observable<Cliente> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<Cliente>(url);
   }
 }

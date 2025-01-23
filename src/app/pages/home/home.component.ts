@@ -11,11 +11,16 @@ export class HomeComponent implements OnInit {
   clienti: Cliente[] = []; // Array per salvare i clienti
   isLoading = false; // Flag per indicare se i dati sono in caricamento
   error: string | null = null; // Per gestire eventuali errori
-
+  cliente!: Cliente;
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.fetchClienti();
+    // this.fetchClienti();
+    this.getClientiById();
+  }
+
+  getClientiById() {
+    this.homeService.getById(1).subscribe((response) => (this.cliente = response));
   }
 
   // Metodo per recuperare i clienti
