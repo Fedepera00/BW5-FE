@@ -1,0 +1,119 @@
+section {
+  background-color: #657277;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-block: 3rem;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 24px;
+
+  .title {
+    color: #3f51b5;
+    font-weight: 600;
+  }
+
+  .description {
+    color: #b1c21de3;
+    margin-top: 8px;
+  }
+}
+
+.custom-icon {
+  font-size: 1rem;
+}
+
+.rule {
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  padding-inline: 5px;
+}
+
+input {
+  text-align: center;
+}
+
+.example-button-row {
+  display: inline-block;
+}
+
+.log-in-link {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  a {
+    margin-inline: 1rem;
+    color: whitesmoke;
+  }
+}
+
+.selected-materie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin-inline: 1rem;
+  margin-block: 3rem;
+}
+
+.selected-materie {
+  margin-top: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.materie-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.mat-button-toggle-group-appearance-standard {
+  border: none;
+}
+
+.materie-table th,
+.materie-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+.psw-legend {
+  padding-inline: 12px;
+  background-color: #f49236;
+  border-radius: 12px;
+}
+
+.hour {
+  width: 100%;
+}
+
+.materie-table th {
+  background-color: #657277;
+  font-weight: bold;
+  color: #f49236;
+}
+
+.materie-table tbody tr:hover {
+  background-color: #f4f4f4;
+}
+
+button.mat-icon-button {
+  color: #f44336;
+}
+
+h3 {
+  text-align: center;
+  width: 100%;
+}
