@@ -1,21 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { iAccessData } from '../interfaces/i-access-data';
-import { iUser } from '../interfaces/i-user';
-import { iLoginRequest } from '../interfaces/i-login-request';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
+import { tap, map } from "rxjs/operators";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { iAccessData } from "../interfaces/i-access-data";
+import { iUser } from "../interfaces/i-user";
+import { iLoginRequest } from "../interfaces/i-login-request";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class AuthService {
   jwt: JwtHelperService = new JwtHelperService();
 
-  signupUrl: string = 'http://localhost:3000/users';
-  loginUrl: string = 'http://localhost:3000/login';
+  signupUrl: string = "http://localhost:8080/api/auth/register";
+  loginUrl: string = "http://localhost:8080/api/auth/login";
 
   authSubject$ = new BehaviorSubject<iAccessData | null>(null);
 
@@ -42,7 +42,7 @@ export class AuthService {
     return this.http.post<iAccessData>(this.loginUrl, authData).pipe(
       tap((accessData) => {
         this.authSubject$.next(accessData);
-        localStorage.setItem('accessData', JSON.stringify(accessData));
+        localStorage.setItem("accessData", JSON.stringify(accessData));
 
         const expDate = this.jwt.getTokenExpirationDate(accessData.accessToken);
 
@@ -55,8 +55,8 @@ export class AuthService {
 
   logout() {
     this.authSubject$.next(null);
-    localStorage.removeItem('accessData');
-    this.router.navigate(['']);
+    localStorage.removeItem("accessData");
+    this.router.navigate([""]);
   }
 
   autoLogout(expDate: Date) {
@@ -68,14 +68,14 @@ export class AuthService {
   }
 
   restoreUser() {
-    const userJson: string | null = localStorage.getItem('accessData');
+    const userJson: string | null = localStorage.getItem("accessData");
 
     if (!userJson) return;
 
     const accessData: iAccessData = JSON.parse(userJson);
 
     if (this.jwt.isTokenExpired(accessData.accessToken)) {
-      localStorage.removeItem('accessData');
+      localStorage.removeItem("accessData");
       return;
     }
 

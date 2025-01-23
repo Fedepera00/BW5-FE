@@ -1,30 +1,20 @@
 <section>
   <div class="welcome-header">
     <h1 matTypography="headline-large" class="title">TutorFlow</h1>
-    <p matTypography="body-medium" class="description">
-      La piattaforma che connette studenti e mentori per un apprendimento fluido
-      e personalizzato. Scopri nuove opportunità di crescita con TutorFlow.
-    </p>
+    <p matTypography="body-medium" class="description">Accedi con le tue credenziali.</p>
   </div>
 
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" />
-      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-        Email non valida
-      </mat-error>
-      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-        L'email è obbligatoria.
-      </mat-error>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" type="text" />
+      <mat-error *ngIf="loginForm.get('username')?.hasError('required')"> Username obbligatorio. </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" type="password" />
-      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-        La password è obbligatoria.
-      </mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')"> La password è obbligatoria. </mat-error>
     </mat-form-field>
 
     <div *ngIf="loginError" class="alert alert-danger">
@@ -36,14 +26,6 @@
       <a routerLink="">Sign-up</a>
     </div>
 
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      class="w-100"
-      [disabled]="loginForm.invalid"
-    >
-      Log-in
-    </button>
+    <button mat-raised-button color="primary" type="submit" class="w-100" [disabled]="loginForm.invalid">Log-in</button>
   </form>
 </section>
