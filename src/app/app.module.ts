@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NavComponent } from "./main-component/nav/nav.component";
@@ -12,7 +12,13 @@ import { MatCardModule } from "@angular/material/card";
 @NgModule({
   declarations: [AppComponent, NavComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, MatTabsModule, HttpClientModule, BrowserAnimationsModule, MatCardModule],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true,
+    // },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

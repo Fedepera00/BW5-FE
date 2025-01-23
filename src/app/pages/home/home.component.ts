@@ -1,7 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { HomeService } from "../../services/home.service";
-import { timeInterval } from "rxjs";
 
 @Component({
   selector: "app-home",
