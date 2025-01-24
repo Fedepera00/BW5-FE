@@ -16,5 +16,4 @@ export interface IClienteRequest {
   telefonoContatto: string;
   logoAziendale: string;
   indirizzi: iIndirizzo[];
-  tipoCliente: TipoCliente;
 }
