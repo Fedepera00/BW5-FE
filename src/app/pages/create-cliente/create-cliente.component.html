@@ -8,31 +8,27 @@
     <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email" />
-      <mat-error *ngIf="formControls.email?.hasError('required')"> Email obbligatoria. </mat-error>
-      <mat-error *ngIf="formControls.email?.hasError('email')"> Email non valida. </mat-error>
+      <mat-error *ngIf="formControls['email']?.hasError('required')"> Email obbligatoria. </mat-error>
+      <mat-error *ngIf="formControls['email']?.hasError('email')"> Email non valida. </mat-error>
     </mat-form-field>
-
-    <!-- Altri campi come ragioneSociale, partitaIva, ecc. -->
 
     <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Ragione Sociale</mat-label>
       <input matInput formControlName="ragioneSociale" />
-      <mat-error *ngIf="formControls.ragioneSociale?.hasError('required')"> Ragione Sociale obbligatoria. </mat-error>
+      <mat-error *ngIf="formControls['ragioneSociale']?.hasError('required')"> Ragione Sociale obbligatoria. </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Partita IVA</mat-label>
       <input matInput formControlName="partitaIva" />
-      <mat-error *ngIf="formControls.partitaIva?.hasError('required')"> Partita IVA obbligatoria. </mat-error>
+      <mat-error *ngIf="formControls['partitaIva']?.hasError('required')"> Partita IVA obbligatoria. </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Fatturato Annuale</mat-label>
       <input matInput formControlName="fatturatoAnnuale" type="number" />
-      <mat-error *ngIf="formControls.fatturatoAnnuale?.hasError('required')"> Fatturato Annuale obbligatorio. </mat-error>
+      <mat-error *ngIf="formControls['fatturatoAnnuale']?.hasError('required')"> Fatturato Annuale obbligatorio. </mat-error>
     </mat-form-field>
-
-    <!-- Aggiungi tutti gli altri campi come emailContatto, nomeContatto, ecc. -->
 
     <mat-form-field appearance="fill" class="w-100 mb-3">
       <mat-label>Tipo Cliente</mat-label>
