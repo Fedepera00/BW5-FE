@@ -1,5 +1,4 @@
 import { TipoCliente } from "../enums/tipo-cliente";
-import { iIndirizzo } from "./indirizzo";
 
 export interface IClienteRequest {
   email: string;
@@ -15,5 +14,6 @@ export interface IClienteRequest {
   cognomeContatto: string;
   telefonoContatto: string;
   logoAziendale: string;
-  indirizzi: iIndirizzo[];
+  indirizziIds: number[]; // Cambiato per corrispondere al backend
+  tipoCliente: TipoCliente;
 }

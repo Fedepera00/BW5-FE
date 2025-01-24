@@ -8,6 +8,7 @@ import { MatOptionModule } from "@angular/material/core";
 import { MatButtonModule } from "@angular/material/button";
 import { CreateClienteRoutingModule } from "./create-cliente-routing.module";
 import { CreateClienteComponent } from "./create-cliente.component";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [CreateClienteComponent],
@@ -19,7 +20,8 @@ import { CreateClienteComponent } from "./create-cliente.component";
     MatSelectModule,
     MatOptionModule,
     MatButtonModule,
-    CreateClienteRoutingModule
+    CreateClienteRoutingModule,
+    MatIconModule
   ]
 })
 export class CreateClienteModule {}

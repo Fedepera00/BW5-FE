@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { IClienteRequest } from "../interfaces/I-clienteRequest";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "root"
 })
 export class HomeService {
   clienteBaseUrl = environment.clienteBaseUrl;
@@ -28,6 +28,6 @@ export class HomeService {
   }
 
   createCliente(clienteRequest: IClienteRequest): Observable<any> {
-    return this.http.post(`${this.clienteBaseUrl}/save`, clienteRequest); // Adatta la chiamata al tuo backend
+    return this.http.post(`${this.clienteBaseUrl}`, clienteRequest); // Rimosso '/save'
   }
 }

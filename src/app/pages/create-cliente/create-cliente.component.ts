@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { TipoCliente } from "../../enums/tipo-cliente";
+import { FormBuilder, FormGroup, Validators, FormArray } from "@angular/forms";
 import { HomeService } from "../../services/home.service";
+import { TipoCliente } from "../../enums/tipo-cliente";
 
 @Component({
   selector: "app-create-cliente",
   templateUrl: "./create-cliente.component.html",
-  styleUrls: ["./create-cliente.component.scss"],
+  styleUrls: ["./create-cliente.component.scss"]
 })
 export class CreateClienteComponent implements OnInit {
   clienteForm!: FormGroup;
@@ -30,8 +30,8 @@ export class CreateClienteComponent implements OnInit {
       nomeContatto: ["", Validators.required],
       cognomeContatto: ["", Validators.required],
       telefonoContatto: ["", Validators.required],
-
-      indirizzi: ["", Validators.required], // Potrebbe essere un array complesso
+      logoAziendale: ["", Validators.required],
+      indirizziIds: this.fb.array([]) // FormArray per gli indirizzi
     });
   }
 
@@ -39,17 +39,39 @@ export class CreateClienteComponent implements OnInit {
     return this.clienteForm.controls;
   }
 
+  get indirizziControls() {
+    return this.clienteForm.get("indirizziIds") as FormArray;
+  }
+
+  addIndirizzo(): void {
+    this.indirizziControls.push(
+      this.fb.group({
+        id: ["", [Validators.required]]
+      })
+    );
+  }
+
+  removeIndirizzo(index: number): void {
+    this.indirizziControls.removeAt(index);
+  }
+
   createCliente(): void {
     if (this.clienteForm.valid) {
-      console.log("Form submitted:", this.clienteForm.value);
-      this.homeService.createCliente(this.clienteForm.value).subscribe(
+      const formValue = this.clienteForm.value;
+
+      // Trasformiamo l'array di oggetti indirizzi in un array di soli ID
+      formValue.indirizziIds = formValue.indirizziIds.map((indirizzo: any) => indirizzo.id);
+
+      console.log("Form inviato:", formValue);
+
+      this.homeService.createCliente(formValue).subscribe(
         (response) => {
-          console.log("Cliente creato:", response);
+          console.log("Cliente creato con successo:", response);
           this.clienteError = null;
         },
         (error) => {
           console.error("Errore durante la creazione:", error);
-          this.clienteError = "Errore durante la creazione del cliente.";
+          this.clienteError = error.error?.message || "Errore durante la creazione del cliente.";
         }
       );
     } else {
