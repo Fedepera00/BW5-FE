@@ -1,22 +1,31 @@
-// import { Injectable } from "@angular/core";
-// import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
-// import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from "@angular/common/http";
+import { Observable, switchMap } from "rxjs";
+import { AuthService } from "../services/auth-service";
 
-// @Injectable()
-// export class AuthInterceptor implements HttpInterceptor {
-//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//     // Recupera il token da localStorage
-//     const accessData = localStorage.getItem("accessData");
-//     const token = accessData ? JSON.parse(accessData).accessToken : null;
-//     if (token) {
-//       // Clona la richiesta e aggiunge l'header Authorization
-//       const authReq = req.clone({
-//         headers: req.headers.set("Authorization", `Bearer ${token}`),
-//       });
-//       return next.handle(authReq);
-//     }
-//     console.log("Token JWT recuperato:", token);
-//     // Se non c'è un token, passa la richiesta originale
-//     return next.handle(req);
-//   }
-// }
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  constructor(private authSvc: AuthService) {}
+
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (request.url.includes("/login")) {
+      return next.handle(request);
+    }
+
+    return this.authSvc.authSubject$.pipe(
+      switchMap((accessData) => {
+        if (!accessData || !accessData.token) {
+          console.log("Nessun token trovato, richiesta inviata senza header Authorization");
+          return next.handle(request);
+        }
+
+        const newRequest = request.clone({
+          headers: request.headers.append("Authorization", `Bearer ${accessData.token}`),
+        });
+
+        console.log("Nuova richiesta con token:", newRequest);
+        return next.handle(newRequest);
+      })
+    );
+  }
+}

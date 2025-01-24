@@ -1,22 +1,33 @@
+import { environment } from "./../environments/environment-development";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { IClienteRequest } from "../interfaces/I-clienteRequest";
 
 @Injectable({
   providedIn: "root",
 })
 export class HomeService {
-  private baseUrl = "http://localhost:8080/api/cliente"; // Endpoint del backend
-  private token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczNzY2MzU3OCwiZXhwIjoxNzM3NjY3MTc4fQ.L1gUAc8GD-RUm-2YGv4CTqGwqQJUILD4vxFMfOaGq-s"; // Inserisci qui il token hardcoded
+  clienteBaseUrl = environment.clienteBaseUrl;
 
   constructor(private http: HttpClient) {}
+  /**
+   * Metodo per ottenere tutti i clienti in forma paginata.
+   * @param page - Numero di pagina (default: 0)
+   * @param size - Dimensione della pagina (default: 10)
+   * @param sortBy - Campo per ordinare i risultati (default: "id")
+   * @returns Observable contenente la risposta con i dati paginati.
+   */
+  getAllClienti(page: number = 0, size: number = 10, sortBy: string = "id"): Observable<any> {
+    const url = `${this.clienteBaseUrl}/paged?page=${page}&size=${size}&sortBy=${sortBy}`;
+    return this.http.get(url);
+  }
 
-  getById(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.token}`, // Aggiunge il token hardcoded agli header
-    });
+  getClienteById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.clienteBaseUrl}/${id}`);
+  }
 
-    return this.http.get<any>(`${this.baseUrl}/${id}`, { headers });
+  createCliente(clienteRequest: IClienteRequest): Observable<any> {
+    return this.http.post(`${this.clienteBaseUrl}/save`, clienteRequest); // Adatta la chiamata al tuo backend
   }
 }

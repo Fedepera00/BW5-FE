@@ -7,15 +7,14 @@ import { HomeService } from "../../services/home.service";
   styleUrl: "./home.component.scss",
 })
 export class HomeComponent {
-  cliente!: any;
+  clienti: any[] = [];
   constructor(private homeServ: HomeService) {}
 
   ngOnInit() {
-    this.getById();
-    setTimeout(() => console.log(this.cliente), 4000);
+    this.getAllClienti();
   }
 
-  getById() {
-    this.homeServ.getById(1).subscribe((response) => (this.cliente = response));
+  getAllClienti() {
+    this.homeServ.getAllClienti(0, 10, "id").subscribe((response) => (this.clienti = response.content));
   }
 }

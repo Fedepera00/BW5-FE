@@ -8,16 +8,17 @@ import { FooterComponent } from "./main-component/footer/footer.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatCardModule } from "@angular/material/card";
+import { AuthInterceptor } from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [AppComponent, NavComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, MatTabsModule, HttpClientModule, BrowserAnimationsModule, MatCardModule],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

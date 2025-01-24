@@ -17,6 +17,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
   },
+  { path: 'create-cliente', loadChildren: () => import('./pages/create-cliente/create-cliente.module').then(m => m.CreateClienteModule) },
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@ import { iUser } from "../interfaces/i-user";
 import { iLoginRequest } from "../interfaces/i-login-request";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService {
   jwt: JwtHelperService = new JwtHelperService();
@@ -44,7 +44,7 @@ export class AuthService {
         this.authSubject$.next(accessData);
         localStorage.setItem("accessData", JSON.stringify(accessData));
 
-        const expDate = this.jwt.getTokenExpirationDate(accessData.accessToken);
+        const expDate = this.jwt.getTokenExpirationDate(accessData.token);
 
         if (!expDate) return;
 
@@ -74,11 +74,11 @@ export class AuthService {
 
     const accessData: iAccessData = JSON.parse(userJson);
 
-    if (this.jwt.isTokenExpired(accessData.accessToken)) {
+    if (this.jwt.isTokenExpired(accessData.token)) {
       localStorage.removeItem("accessData");
       return;
     }
-
+    console.log("Token ripristinato correttamente:", accessData);
     this.authSubject$.next(accessData);
   }
 }
