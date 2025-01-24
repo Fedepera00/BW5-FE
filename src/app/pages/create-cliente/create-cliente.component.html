@@ -1,134 +1,144 @@
 <section>
-  <div class="welcome-header">
-    <h1 matTypography="headline-large" class="title">Crea Cliente</h1>
-    <p matTypography="body-medium" class="description">Compila i dati del cliente.</p>
-  </div>
+  <div class="finestrella">
+    <div class="welcome-header">
+      <h1 matTypography="headline-large" class="title">Crea Cliente</h1>
+      <p matTypography="body-medium" class="description">Compila i dati del cliente.</p>
+    </div>
 
-  <form [formGroup]="clienteForm" (ngSubmit)="createCliente()">
-    <!-- Email -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" />
-      <mat-error *ngIf="formControls['email']?.hasError('required')">Email obbligatoria.</mat-error>
-      <mat-error *ngIf="formControls['email']?.hasError('email')">Email non valida.</mat-error>
-    </mat-form-field>
+    <form [formGroup]="clienteForm" (ngSubmit)="createCliente()">
+      <div>
+        <!-- Email -->
 
-    <!-- Ragione Sociale -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Ragione Sociale</mat-label>
-      <input matInput formControlName="ragioneSociale" />
-      <mat-error *ngIf="formControls['ragioneSociale']?.hasError('required')">Ragione Sociale obbligatoria.</mat-error>
-    </mat-form-field>
-
-    <!-- Partita IVA -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Partita IVA</mat-label>
-      <input matInput formControlName="partitaIva" />
-      <mat-error *ngIf="formControls['partitaIva']?.hasError('required')">Partita IVA obbligatoria.</mat-error>
-    </mat-form-field>
-
-    <!-- Data Inserimento -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Data Inserimento</mat-label>
-      <input matInput formControlName="dataInserimento" type="date" />
-      <mat-error *ngIf="formControls['dataInserimento']?.hasError('required')">Data Inserimento obbligatoria.</mat-error>
-    </mat-form-field>
-
-    <!-- Data Ultimo Contatto -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Data Ultimo Contatto</mat-label>
-      <input matInput formControlName="dataUltimoContatto" type="date" />
-      <mat-error *ngIf="formControls['dataUltimoContatto']?.hasError('required')">Data Ultimo Contatto obbligatoria.</mat-error>
-    </mat-form-field>
-
-    <!-- Fatturato Annuale -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Fatturato Annuale</mat-label>
-      <input matInput formControlName="fatturatoAnnuale" type="number" />
-      <mat-error *ngIf="formControls['fatturatoAnnuale']?.hasError('required')">Fatturato Annuale obbligatorio.</mat-error>
-    </mat-form-field>
-
-    <!-- PEC -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>PEC</mat-label>
-      <input matInput formControlName="pec" type="email" />
-      <mat-error *ngIf="formControls['pec']?.hasError('required')">PEC obbligatoria.</mat-error>
-      <mat-error *ngIf="formControls['pec']?.hasError('email')">PEC non valida.</mat-error>
-    </mat-form-field>
-
-    <!-- Telefono -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Telefono</mat-label>
-      <input matInput formControlName="telefono" />
-      <mat-error *ngIf="formControls['telefono']?.hasError('required')">Telefono obbligatorio.</mat-error>
-    </mat-form-field>
-
-    <!-- Tipo Cliente -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Tipo Cliente</mat-label>
-      <mat-select formControlName="tipoCliente">
-        <mat-option *ngFor="let tipo of tipoClienti" [value]="tipo">{{ tipo }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="formControls['tipoCliente']?.hasError('required')">Tipo Cliente obbligatorio.</mat-error>
-    </mat-form-field>
-
-    <!-- Logo Aziendale -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Logo Aziendale</mat-label>
-      <input matInput formControlName="logoAziendale" />
-      <mat-error *ngIf="formControls['logoAziendale']?.hasError('required')">Logo Aziendale obbligatorio.</mat-error>
-    </mat-form-field>
-
-    <!-- Indirizzi -->
-    <div formArrayName="indirizziIds" class="mb-3">
-      <div *ngFor="let indirizzo of indirizziControls.controls; let i = index" [formGroupName]="i" class="mb-2">
-        <mat-form-field appearance="fill" class="w-100">
-          <mat-label>ID Indirizzo</mat-label>
-          <input matInput formControlName="id" type="number" placeholder="Inserisci ID indirizzo" />
-          <mat-error *ngIf="indirizzo.get('id')?.hasError('required')">L'ID dell'indirizzo è obbligatorio.</mat-error>
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+          <mat-error *ngIf="formControls['email']?.hasError('required')">Email obbligatoria.</mat-error>
+          <mat-error *ngIf="formControls['email']?.hasError('email')">Email non valida.</mat-error>
         </mat-form-field>
-        <button mat-icon-button color="warn" (click)="removeIndirizzo(i)" type="button">
-          <mat-icon>delete</mat-icon>
-        </button>
+
+        <!-- Ragione Sociale -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Ragione Sociale</mat-label>
+          <input matInput formControlName="ragioneSociale" />
+          <mat-error *ngIf="formControls['ragioneSociale']?.hasError('required')">Ragione Sociale obbligatoria.</mat-error>
+        </mat-form-field>
+
+        <!-- Partita IVA -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Partita IVA</mat-label>
+          <input matInput formControlName="partitaIva" />
+          <mat-error *ngIf="formControls['partitaIva']?.hasError('required')">Partita IVA obbligatoria.</mat-error>
+        </mat-form-field>
       </div>
-      <button mat-raised-button color="accent" (click)="addIndirizzo()" type="button">Aggiungi Indirizzo</button>
-    </div>
+      <!-- Data Inserimento -->
+      <div>
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Data Inserimento</mat-label>
+          <input matInput formControlName="dataInserimento" type="date" />
+          <mat-error *ngIf="formControls['dataInserimento']?.hasError('required')">Data Inserimento obbligatoria.</mat-error>
+        </mat-form-field>
 
-    <!-- Email Contatto -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Email Contatto</mat-label>
-      <input matInput formControlName="emailContatto" type="email" />
-      <mat-error *ngIf="formControls['emailContatto']?.hasError('required')">Email Contatto obbligatoria.</mat-error>
-      <mat-error *ngIf="formControls['emailContatto']?.hasError('email')">Email Contatto non valida.</mat-error>
-    </mat-form-field>
+        <!-- Data Ultimo Contatto -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Data Ultimo Contatto</mat-label>
+          <input matInput formControlName="dataUltimoContatto" type="date" />
+          <mat-error *ngIf="formControls['dataUltimoContatto']?.hasError('required')">Data Ultimo Contatto obbligatoria.</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <!-- Fatturato Annuale -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Fatturato Annuale</mat-label>
+          <input matInput formControlName="fatturatoAnnuale" type="number" />
+          <mat-error *ngIf="formControls['fatturatoAnnuale']?.hasError('required')">Fatturato Annuale obbligatorio.</mat-error>
+        </mat-form-field>
 
-    <!-- Nome Contatto -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Nome Contatto</mat-label>
-      <input matInput formControlName="nomeContatto" />
-      <mat-error *ngIf="formControls['nomeContatto']?.hasError('required')">Nome Contatto obbligatorio.</mat-error>
-    </mat-form-field>
+        <!-- PEC -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>PEC</mat-label>
+          <input matInput formControlName="pec" type="email" />
+          <mat-error *ngIf="formControls['pec']?.hasError('required')">PEC obbligatoria.</mat-error>
+          <mat-error *ngIf="formControls['pec']?.hasError('email')">PEC non valida.</mat-error>
+        </mat-form-field>
 
-    <!-- Cognome Contatto -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Cognome Contatto</mat-label>
-      <input matInput formControlName="cognomeContatto" />
-      <mat-error *ngIf="formControls['cognomeContatto']?.hasError('required')">Cognome Contatto obbligatorio.</mat-error>
-    </mat-form-field>
+        <!-- Telefono -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Telefono</mat-label>
+          <input matInput formControlName="telefono" />
+          <mat-error *ngIf="formControls['telefono']?.hasError('required')">Telefono obbligatorio.</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <!-- Tipo Cliente -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Tipo Cliente</mat-label>
+          <mat-select formControlName="tipoCliente">
+            <mat-option *ngFor="let tipo of tipoClienti" [value]="tipo">{{ tipo }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formControls['tipoCliente']?.hasError('required')">Tipo Cliente obbligatorio.</mat-error>
+        </mat-form-field>
 
-    <!-- Telefono Contatto -->
-    <mat-form-field appearance="fill" class="w-100 mb-3">
-      <mat-label>Telefono Contatto</mat-label>
-      <input matInput formControlName="telefonoContatto" />
-      <mat-error *ngIf="formControls['telefonoContatto']?.hasError('required')">Telefono Contatto obbligatorio.</mat-error>
-    </mat-form-field>
+        <!-- Logo Aziendale -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Logo Aziendale</mat-label>
+          <input matInput formControlName="logoAziendale" />
+          <mat-error *ngIf="formControls['logoAziendale']?.hasError('required')">Logo Aziendale obbligatorio.</mat-error>
+        </mat-form-field>
+      </div>
 
-    <!-- Messaggio di errore generale -->
-    <div *ngIf="clienteError" class="alert alert-danger">
-      {{ clienteError }}
-    </div>
+      <!-- Indirizzi -->
+      <div formArrayName="indirizziIds" class="mb-3">
+        <div *ngFor="let indirizzo of indirizziControls.controls; let i = index" [formGroupName]="i" class="mb-2">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>ID Indirizzo</mat-label>
+            <input matInput formControlName="id" type="number" placeholder="Inserisci ID indirizzo" />
+            <mat-error *ngIf="indirizzo.get('id')?.hasError('required')">L'ID dell'indirizzo è obbligatorio.</mat-error>
+          </mat-form-field>
+          <button mat-icon-button color="warn" (click)="removeIndirizzo(i)" type="button">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="accent" (click)="addIndirizzo()" type="button">Aggiungi Indirizzo</button>
+      </div>
+      <div>
+        <!-- Nome Contatto -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Nome Contatto</mat-label>
+          <input matInput formControlName="nomeContatto" />
+          <mat-error *ngIf="formControls['nomeContatto']?.hasError('required')">Nome Contatto obbligatorio.</mat-error>
+        </mat-form-field>
 
-    <!-- Pulsante di submit -->
-    <button mat-raised-button color="primary" type="submit" class="w-100">Crea Cliente</button>
-  </form>
+        <!-- Cognome Contatto -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Cognome Contatto</mat-label>
+          <input matInput formControlName="cognomeContatto" />
+          <mat-error *ngIf="formControls['cognomeContatto']?.hasError('required')">Cognome Contatto obbligatorio.</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <!-- Email Contatto -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Email Contatto</mat-label>
+          <input matInput formControlName="emailContatto" type="email" />
+          <mat-error *ngIf="formControls['emailContatto']?.hasError('required')">Email Contatto obbligatoria.</mat-error>
+          <mat-error *ngIf="formControls['emailContatto']?.hasError('email')">Email Contatto non valida.</mat-error>
+        </mat-form-field>
+
+        <!-- Telefono Contatto -->
+        <mat-form-field appearance="fill" class="w-100 mb-3">
+          <mat-label>Telefono Contatto</mat-label>
+          <input matInput formControlName="telefonoContatto" />
+          <mat-error *ngIf="formControls['telefonoContatto']?.hasError('required')">Telefono Contatto obbligatorio.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Messaggio di errore generale -->
+      <div *ngIf="clienteError" class="alert alert-danger">
+        {{ clienteError }}
+      </div>
+
+      <!-- Pulsante di submit -->
+      <button mat-raised-button color="primary" type="submit" class="w-100">Crea Cliente</button>
+    </form>
+  </div>
 </section>

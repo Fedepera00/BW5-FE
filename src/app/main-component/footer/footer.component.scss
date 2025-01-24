@@ -1,0 +1,74 @@
+.footer {
+  background: rgb(19, 78, 44);
+  background: linear-gradient(90deg, rgba(19, 78, 44, 1) 0%, rgba(8, 66, 34, 1) 57%, rgba(1, 43, 19, 1) 100%);
+  color: white;
+  padding: 2rem 1rem;
+  font-family: "Roboto", sans-serif;
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+
+    .footer-section {
+      flex: 1 30%;
+
+      .footer-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #a8ff60; // Verde accattivante
+      }
+
+      .footer-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 0.5rem;
+
+          a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+
+            &:hover {
+              text-decoration: underline;
+              color: #a8ff60; // Verde brillante al passaggio del mouse
+            }
+          }
+        }
+      }
+
+      p {
+        font-size: 0.9rem;
+
+        a {
+          color: white;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+            color: #a8ff60;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}

@@ -1,18 +1,20 @@
-<ng-container *ngIf="clienti.length > 0">
-  <mat-card class="example-card" appearance="outlined" *ngFor="let cliente of clienti">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title>{{ cliente.ragioneSociale }} <br />{{ cliente.partitaIva }}</mat-card-title>
+<section>
+  <ng-container *ngIf="clienti.length > 0">
+    <mat-card class="example-card" appearance="outlined" *ngFor="let cliente of clienti">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ cliente.ragioneSociale }} <br />{{ cliente.partitaIva }}</mat-card-title>
 
-        <mat-card-subtitle>nome completo: {{ cliente.nomeContatto }} {{ cliente.cognomeContatto }}</mat-card-subtitle>
-        <mat-card-subtitle>data inserimento: {{ cliente.dataInserimento }}</mat-card-subtitle>
-        <mat-card-subtitle>data ultimo contatto: {{ cliente.dataUltimoContatto }}</mat-card-subtitle>
-        <mat-card-subtitle>pec: {{ cliente.pec }}</mat-card-subtitle>
-        <mat-card-subtitle>telefono: {{ cliente.telefono }}</mat-card-subtitle>
+          <mat-card-subtitle>nome completo: {{ cliente.nomeContatto }} {{ cliente.cognomeContatto }}</mat-card-subtitle>
+          <mat-card-subtitle>data inserimento: {{ cliente.dataInserimento }}</mat-card-subtitle>
+          <mat-card-subtitle>data ultimo contatto: {{ cliente.dataUltimoContatto }}</mat-card-subtitle>
+          <mat-card-subtitle>pec: {{ cliente.pec }}</mat-card-subtitle>
+          <mat-card-subtitle>telefono: {{ cliente.telefono }}</mat-card-subtitle>
 
-        <img mat-card-sm-image src="{{ cliente.logoAziendale }}" />
-      </mat-card-title-group>
-    </mat-card-header>
-    <mat-card-content> </mat-card-content>
-  </mat-card>
-</ng-container>
+          <img mat-card-sm-image src="{{ cliente.logoAziendale }}" />
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content> </mat-card-content>
+    </mat-card>
+  </ng-container>
+</section>
